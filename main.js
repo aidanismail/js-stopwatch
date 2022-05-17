@@ -3,26 +3,30 @@
 let [milliseconds,seconds,minutes,hours] = [0,0,0,0];
 let timerRef = document.getElementById('.timer');
 let int = null;
+let btnStart = document.getElementById('button-start')
+let btnStop = document.getElementById('button-stop')
+let btnReset = document.getElementById('button-reset')
 
 // button-start
-document.getElementById('button-start').addEventListener('click', ()=>{
+btnStart.onclick = function (){
     if(int!==null){
         clearInterval(int);
     }
-    int = setInterval(displayTimer,10);
-});
+    int = setInterval(displayTimer,10); 
+}
+
 
 //button-stop
-document.getElementById('button-stop').addEventListener('click', ()=>{
+btnStop.onclick = function(){
     clearInterval(int);
-});
+}
 
 //button-reset
-document.getElementById('button-reset').addEventListener('click', ()=>{
+btnReset.onclick = function(){
     clearInterval(int);
     [milliseconds,seconds,minutes,hours] = [0,0,0,0];
     timer.innerHTML = '00 : 00 : 00 : 000 ';
-});
+}
 
 //main function
 function displayTimer(){
@@ -39,11 +43,37 @@ function displayTimer(){
             }
         }
     }
+ // kondisi waktu   
+ let h 
+ if (hours<10){
+    h = "0" + hours
+}   else{
+   h = hours
+}
 
- let h = hours < 10 ? "0" + hours : hours;
- let m = minutes < 10 ? "0" + minutes : minutes;
- let s = seconds < 10 ? "0" + seconds : seconds;
- let ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
+let m
+if(minutes<10){
+    m = "0" + minutes
+} else{
+    m = minutes
+}
 
+let s
+if(seconds<10){
+    s = "0" +seconds
+}else{
+    s = seconds
+}
+
+ let ms
+ if (milliseconds<10){
+    ms= "00" + milliseconds
+ } else if(milliseconds<100){
+    ms= "0" + milliseconds
+ } else{
+     ms = milliseconds
+ }
+
+// akhir operasi
  timer.innerHTML = ` ${h} : ${m} : ${s} : ${ms}`;
 }
