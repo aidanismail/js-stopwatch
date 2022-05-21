@@ -1,13 +1,12 @@
 
-//deklarasi var
+//deklarasi variable
 let [milliseconds,seconds,minutes,hours] = [0,0,0,0];
-let timerRef = document.getElementById('.timer');
 let int = null;
 let btnStart = document.getElementById('button-start')
 let btnStop = document.getElementById('button-stop')
 let btnReset = document.getElementById('button-reset')
 
-// button-start
+// function button-start saat di klik
 btnStart.onclick = function (){
     if(int!==null){
         clearInterval(int);
@@ -15,22 +14,23 @@ btnStart.onclick = function (){
     int = setInterval(displayTimer,10); 
 }
 
-
-//button-stop
+// function button-stop saat diklik
 btnStop.onclick = function(){
     clearInterval(int);
 }
 
-//button-reset
+// function button-reset saat diklik
 btnReset.onclick = function(){
     clearInterval(int);
     [milliseconds,seconds,minutes,hours] = [0,0,0,0];
     timer.innerHTML = '00 : 00 : 00 : 000 ';
 }
 
-//main function
+//main function & kondisi
 function displayTimer(){
+    //penambahan miliseconds
     milliseconds+=10;
+    // cara kerja waktu normal
     if(milliseconds == 1000){
         milliseconds = 0;
         seconds++;
@@ -43,29 +43,34 @@ function displayTimer(){
             }
         }
     }
- // kondisi waktu   
+
+ // menekankan kondisi waktu  2 digit  
  let h 
+ 
  if (hours<10){
     h = "0" + hours
 }   else{
    h = hours
 }
 
-let m
+let m 
+
 if(minutes<10){
     m = "0" + minutes
 } else{
     m = minutes
 }
 
-let s
+let s 
+
 if(seconds<10){
     s = "0" +seconds
 }else{
     s = seconds
 }
 
- let ms
+ let ms 
+ 
  if (milliseconds<10){
     ms= "00" + milliseconds
  } else if(milliseconds<100){
